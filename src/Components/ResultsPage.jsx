@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import socket from "../socket";
 
 function ResultsPage() {
   const { roomCode } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const prompt = location.state?.prompt;
 
   const [room, setRoom] = useState(null);
   const [results, setResults] = useState({});
@@ -62,7 +64,7 @@ function ResultsPage() {
 
       <div className="results-container">
         <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
-          Round Results
+          Round Results: {prompt}
         </h2>
 
         <div className="results-images">

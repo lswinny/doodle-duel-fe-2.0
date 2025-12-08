@@ -182,7 +182,7 @@ function Canvas({ nickname, token }) {
 
       const data = await res.json().catch(() => null);
       console.log("Drawing uploaded successfully:", data);
-      navigate(`/results/${roomCode}`);
+      navigate(`/results/${roomCode}`, {state: { prompt }});
     } catch (err) {
       console.error(err);
       setError(err.message || "Something went wrong while submitting.");
@@ -214,11 +214,6 @@ function Canvas({ nickname, token }) {
       {preCountdown !== null && preCountdown >= 0 ? (
         <section className="screen">
           <div className="screen__body canvas-layout">
-            {prompt && (
-              <h2 className="canvas-prompt">
-                Prompt: <span>{prompt}</span>
-              </h2>
-            )}
             <h1 className="canvas-countdown">{preCountdown}</h1>
           </div>
         </section>
