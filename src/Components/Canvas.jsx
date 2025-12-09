@@ -59,14 +59,32 @@ function Canvas({ nickname, token }) {
 
   useEffect(() => {
     if (!started || !canvasRef.current) return;
-    const canvas = canvasRef.current;
-    canvas.width = 800;
-    canvas.height = 500;
-    const ctx = canvas.getContext("2d");
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = "black";
-    ctx.lineCap = "round";
-    ctxRef.current = ctx;
+
+    const resize = () => {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      const dataUrl = canvas.toDataURL();
+      const rect = canvas.getBoundingClientRect();
+      const scale = window.devicePixelRatio || 1;
+      canvas.width = rect.width * scale;
+      canvas.height = rect.height * scale;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(scale, scale);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "black";
+      ctx.lineCap = "round";
+      ctxRef.current = ctx;
+
+      const img = new Image();
+      img.src = dataUrl;
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, rect.width, rect.height);
+      };
+    };
+    resize();
+
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, [started]);
 
   useEffect(() => {
@@ -107,9 +125,17 @@ function Canvas({ nickname, token }) {
     ctx.stroke();
   }
 
+  function getMousePos(e) {
+    const rect = canvasRef.current.getBoundingClientRect();
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    };
+  }
+
   function handleMouseDown(e) {
     setDrawing(true);
-    setPrev({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
+    setPrev(getMousePos(e));
   }
 
   function handleMouseUp() {
@@ -120,11 +146,9 @@ function Canvas({ nickname, token }) {
   function handleMouseMove(e) {
     if (!drawing) return;
 
-    const x = e.nativeEvent.offsetX;
-    const y = e.nativeEvent.offsetY;
-
-    drawLine(prev.x, prev.y, x, y);
-    setPrev({ x, y });
+    const pos = getMousePos(e);
+    drawLine(prev.x, prev.y, pos.x, pos.y);
+    setPrev(pos);
   }
 
   function canvasToPngBlob(canvas) {
@@ -182,7 +206,7 @@ function Canvas({ nickname, token }) {
 
       const data = await res.json().catch(() => null);
       console.log("Drawing uploaded successfully:", data);
-      navigate(`/results/${roomCode}`, {state: { prompt }});
+      navigate(`/results/${roomCode}`, { state: { prompt } });
     } catch (err) {
       console.error(err);
       setError(err.message || "Something went wrong while submitting.");
@@ -192,49 +216,46 @@ function Canvas({ nickname, token }) {
   }
 
   return (
-  <section>
-    <div className="screen__header">
-      {/* Global header is already in App.jsx, so no title here */}
-      <div className="prompt-timer">
-        {prompt && (
-          <p id="prompt-text">
-            Prompt: <span>{prompt}</span>
-          </p>
-        )}
-        {started && preCountdown === null && (
-          <p className="canvas-timer">
-            ⏳ Time left: <span>{timer}</span> seconds
-          </p>
+    <section>
+      <div className="screen__header">
+        {/* Global header is already in App.jsx, so no title here */}
+        <div className="prompt-timer">
+          {prompt && (
+            <p id="prompt-text">
+              Prompt: <span>{prompt}</span>
+            </p>
+          )}
+          {started && preCountdown === null && (
+            <p className="canvas-timer">
+              ⏳ Time left: <span>{timer}</span> seconds
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div>
+        {preCountdown !== null && preCountdown >= 0 ? (
+          <div className="canvas-layout">
+            <h1 className="canvas-countdown">{preCountdown}</h1>
+          </div>
+        ) : !started ? (
+          <div className="canvas-layout">
+            <p className="canvas-waiting">Waiting for round to begin…</p>
+          </div>
+        ) : (
+          <div className="canvas-wrapper">
+            <canvas
+              ref={canvasRef}
+              className="drawing-canvas"
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onMouseMove={handleMouseMove}
+            />
+          </div>
         )}
       </div>
-    </div>
-
-    <div>
-      {preCountdown !== null && preCountdown >= 0 ? (
-        <div className="canvas-layout">
-          <h1 className="canvas-countdown">{preCountdown}</h1>
-        </div>
-      ) : !started ? (
-        <div className="canvas-layout">
-          <p className="canvas-waiting">Waiting for round to begin…</p>
-        </div>
-      ) : (
-        <div className="canvas-wrapper">
-          <canvas
-            ref={canvasRef}
-            className="drawing-canvas"
-            width={800}
-            height={500}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-          />
-        </div>
-      )}
-    </div>
-  </section>
-);
-
+    </section>
+  );
 }
 
 export default Canvas;

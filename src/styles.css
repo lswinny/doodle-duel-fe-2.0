@@ -239,6 +239,12 @@ button:hover {
   padding-top: 2rem;
 }
 
+.canvas-wrapper {
+  background-color: #7c38aa;
+  width: 100%;   /* scales visually */
+  height: auto;
+}
+
 /* Timer in the purple header */
 .canvas-timer {
   margin: 0.5rem 0 0;
@@ -272,15 +278,14 @@ button:hover {
 /* Actual HTML canvas */
 .drawing-canvas {
   display: block;
-  width: 800px;
-  height: 500px;
-  max-width: 800px;
-  /* height is auto to keep aspect ratio;
-     internal resolution is controlled by canvas.width/height in JS */
+  width: 100%;          /* fills parent container */
+  max-width: 800px;     /* caps at 800px */
+  aspect-ratio: 16 / 10; /* keeps proportions (similar to 800x500) */
   background: #ffffff;
   border: 2px solid #000000;
   border-radius: 6px;
 }
+
 
 .error-message {
   margin-top: 1rem;
