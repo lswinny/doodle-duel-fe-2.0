@@ -106,7 +106,6 @@ function Canvas({ nickname, token }) {
       const countdown = setTimeout(() => setTimer(timer - 1), 1000);
       return () => clearTimeout(countdown);
     } else if (timer === 0 && !isSubmitting) {
-      console.log("⏰ Timer finished — auto submitting drawing");
       handleSubmitDrawing();
     }
   }, [timer]);
@@ -152,7 +151,6 @@ function Canvas({ nickname, token }) {
   }
 
   function canvasToPngBlob(canvas) {
-    console.log("converting");
     return new Promise((resolve, reject) => {
       canvas.toBlob(
         (blob) => {
@@ -205,7 +203,6 @@ function Canvas({ nickname, token }) {
       }
 
       const data = await res.json().catch(() => null);
-      console.log("Drawing uploaded successfully:", data);
       navigate(`/results/${roomCode}`, { state: { prompt } });
     } catch (err) {
       console.error(err);
@@ -218,7 +215,6 @@ function Canvas({ nickname, token }) {
   return (
     <section>
       <div className="screen__header">
-        {/* Global header is already in App.jsx, so no title here */}
         <div className="prompt-timer">
           {prompt && (
             <p id="prompt-text">

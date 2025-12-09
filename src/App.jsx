@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     function handleNavigate({ page, roomCode }) {
-      // Build path dynamically
       if (roomCode) navigate(`/${page}/${roomCode}`);
       else navigate(`/${page}`);
     }
@@ -44,8 +43,6 @@ function App() {
         console.warn("Token event received without a token:", data);
         return;
       }
-
-      console.log("Received token from server:", receivedToken);
       setToken(receivedToken);
       localStorage.setItem("authToken", receivedToken);
     });

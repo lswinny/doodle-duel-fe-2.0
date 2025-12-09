@@ -46,7 +46,6 @@ function ResultsPage() {
 
   useEffect(() => {
     function handleResults(data) {
-      console.log("data: ", data);
       setResults(data);
     }
 
@@ -73,7 +72,6 @@ function ResultsPage() {
 
             return (
               <div className="results-player" key={socketId}>
-                {/* Avatar */}
                 <div className="results-avatar">
                   <img
                     src={player.avatar || "/default-avatar.png"}
@@ -85,7 +83,7 @@ function ResultsPage() {
                     }}
                   />
                 </div>
-                {/* Drawing image placeholder */}
+                
                 <div className="results-image-placeholder">
                   <img
                     src={"data:image/png;base64," + url}
@@ -97,15 +95,14 @@ function ResultsPage() {
                   />
                 </div>
 
-                {/* Player name */}
                 <p className="results-player-name">{player.nickname}</p>
 
-                {/* AI Score — per player */}
                 <p className="results-player-score">Score: {score}</p>
               </div>
             );
           })}
         </div>
+        
         <div
           className="nav-buttons"
           style={{ marginTop: "2rem", textAlign: "center" }}

@@ -36,10 +36,6 @@ function RoomPage({ nickname, token, avatar }) {
     };
   }, [roomCode, nickname, token, navigate, avatar]);
 
-  console.log("Room code:", roomCode);
-  //console.log("Host ID:", room.host);
-
-  console.log({ players });
   return (
     <section>
       <div className="screen__body">

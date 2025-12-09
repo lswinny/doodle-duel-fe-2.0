@@ -9,15 +9,12 @@ export default function LobbyPage({ nickname, token, rooms, setRooms, avatar }) 
   useEffect(() => {
     socket.emit("lobby:join");
 
-    //socket.emit("lobby:get-rooms");
-
     function handleRoomsUpdated(data) {
       if (!Array.isArray(data)) return;
       setRooms([...new Set(data)]);
     }
 
     function handleRoomCreated(code, data) {
-      console.log(data);
       const newCode = typeof code === "string" ? code : code?.roomCode;
       if (!newCode) {
         console.warn("roomCreated event received without a room code:", code);

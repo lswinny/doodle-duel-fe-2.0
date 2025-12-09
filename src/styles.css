@@ -125,14 +125,14 @@
 }
 
 #prompt-text {
-  font-size: 1.5rem;       /* smaller than header */
-  font-weight: bold;   /* not bold */
-  color: #ffee00;           /* your choice */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffee00;
   margin-top: 0.5rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Main container inside the screen */
+/*RESULTS*/
 .results-container {
   width: 100%;
   height: 100%;
@@ -142,35 +142,31 @@
   box-sizing: border-box;
 }
 
-/* The area holding the two images */
 .results-images {
-  flex: 1;                        /* Fills available vertical space */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3rem;
 }
 
-/* Each player block */
 .results-player {
   flex: 1;
-  max-width: 40%;                 /* Keeps images from stretching too wide */
+  max-width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Image placeholder / image styling */
 .results-image-placeholder {
   width: 100%;
-  max-width: 450px;               /* Prevents huge blow-up */
-  aspect-ratio: 4 / 3;            /* Consistent shape */
+  max-width: 450px;
+  aspect-ratio: 4 / 3;
   background: #eee;
   border: 2px solid #ccc;
   border-radius: 12px;
 }
 
-/* Player name under image */
 .results-player-name {
   margin-top: 0.5rem;
   font-weight: bold;
@@ -183,7 +179,6 @@
   font-size: 1rem;
 }
 
-/* Results summary section */
 .results-summary {
   margin-top: 2rem;
   text-align: center;
@@ -199,31 +194,31 @@
 }
 
 .nav-buttons button {
-  padding: 1rem 2rem;          /* bigger clickable area */
-  font-size: 1.2rem;           /* larger text */
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
   border: none;
-  border-radius: 8px;          /* rounded corners */
-  background: #ffd93b;         /* yellow background */
-  color: #000000;              /* darker text for contrast */
+  border-radius: 8px;
+  background: #ffd93b;
+  color: #000000;
   cursor: pointer;
   font-weight: bold;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .secondary-button {
-  padding: 1rem 2rem;          /* bigger clickable area */
-  font-size: 1.2rem;           /* larger text */
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
   border: none;
-  border-radius: 8px;          /* rounded corners */
-  background: #ffd93b;         /* yellow background */
-  color: #000000;              /* darker text for contrast */
+  border-radius: 8px;
+  background: #ffd93b;
+  color: #000000;
   cursor: pointer;
   font-weight: bold;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-  transform: translateY(-2px);      /* subtle lift on hover */
+  transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
@@ -239,7 +234,7 @@ button:hover {
   padding-top: 2rem;
   width: 100%;
   max-width: 800px;
-  aspect-ratio: 16/10;   /* ensures same shape as canvas */
+  aspect-ratio: 16/10;
   background: #fff;
 }
 
@@ -248,7 +243,6 @@ button:hover {
   background-color: #7c38aa;
 }
 
-/* Prompt text above the canvas */
 .canvas-prompt {
   margin: 0 0 1rem;
   font-size: 1.5rem;
@@ -271,7 +265,6 @@ button:hover {
   color: #444;
 }
 
-/* Actual HTML canvas */
 .drawing-canvas {
   display: block;
   max-width: 800px;
