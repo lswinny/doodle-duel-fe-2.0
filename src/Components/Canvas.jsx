@@ -236,11 +236,15 @@ function Canvas({ nickname, token }) {
       <div>
         {preCountdown !== null && preCountdown >= 0 ? (
           <div className="canvas-layout">
+            <div className="canvas-layout">
             <h1 className="canvas-countdown">{preCountdown}</h1>
+            </div>
           </div>
         ) : !started ? (
           <div className="canvas-layout">
+            <div className="canvas-layout">
             <p className="canvas-waiting">Waiting for round to begin…</p>
+            </div>
           </div>
         ) : (
           <div className="canvas-wrapper">
