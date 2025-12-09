@@ -57,11 +57,7 @@ function ResultsPage() {
   if (!room) return <p>Loading results...</p>;
 
   return (
-    <section className="screen">
-      <header className="screen__header">
-        <h1 className="screen__title">Doodle Duel!</h1>
-      </header>
-
+    <section>
       <div className="results-container">
         <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
           Round Results: {prompt}

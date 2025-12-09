@@ -41,11 +41,7 @@ function RoomPage({ nickname, token, avatar }) {
 
   console.log({ players });
   return (
-    <section className="screen">
-      <header className="screen__header">
-        <h1 className="screen__title">Doodle Duel!</h1>
-      </header>
-
+    <section>
       <div className="screen__body">
         <p>Players in this room:</p>
         <ul className="player-list">

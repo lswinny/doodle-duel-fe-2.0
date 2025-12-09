@@ -47,11 +47,7 @@ export default function LobbyPage({ nickname, token, rooms, setRooms, avatar }) 
   }
 
   return (
-    <section className="screen">
-      <header className="screen__header">
-        <h1 className="screen__title">Doodle Duel!</h1>
-      </header>
-
+    <section>
       <div className="screen__body">
         <p>Hi {nickname || "Player"}! Welcome to the Lobby!</p>
         {avatar && (

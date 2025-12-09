@@ -19,10 +19,9 @@
 }
 
 .screen {
-  width: 80vw;
-  height: 80vh;
+  width: 80%;
+  height: 80%;
   background: white;
-  /* box-shadow: 0 0 0 1px #ddd; */
 }
 
 .game-layout {
@@ -47,25 +46,23 @@
   color: #ffd93b;
 }
 
-
-
-/* Outline / shadow layer */
 .screen__title::before {
   content: attr(data-text);
   position: absolute;
-  left: 4px;   /* horizontal offset */
-  top: 4px;    /* vertical offset */
-  color: #e69500; /* darker yellow / orange */
+  left: 4px;
+  top: 4px;
+  color: #e69500;
   z-index: -1;
 }
 
 .screen__body {
-  padding: 3rem 3rem 3.5rem;
+  padding: 10% 10% 10% 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;            /* Needed for vertical centering */
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
   text-align: center;
 }
@@ -123,10 +120,14 @@
   cursor: default;
 }
 
+#prompt-timer {
+  background-color: #7c38aa;
+}
+
 #prompt-text {
   font-size: 1.5rem;       /* smaller than header */
   font-weight: bold;   /* not bold */
-  color: #000000;           /* your choice */
+  color: #ffee00;           /* your choice */
   margin-top: 0.5rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -287,18 +288,16 @@ button:hover {
   font-weight: 500;
 }
 
-/* Timer in the purple header */
 .canvas-timer {
   margin: 0.5rem 0 0;
   font-size: 1.1rem;
-  color: #ffffff;
-
-  /* override the doodle title font */
+  color: #fbff00;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   letter-spacing: 0.05em;
+  padding-bottom: 2rem;
 }
 
 .canvas-timer span {
-  font-variant-numeric: tabular-nums; /* optional, makes digits align nicely */
+  font-variant-numeric: tabular-nums;
 }

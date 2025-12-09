@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import socket from "./socket";
 
+import Header from "./Components/Header";
 import Canvas from "./Components/Canvas";
 import LandingPage from "./Components/LandingPage";
 import LobbyPage from "./Components/LobbyPage";
@@ -61,6 +62,8 @@ function App() {
 
   return (
     <main className="app">
+      <section className="screen">
+      <Header />
       <Routes>
         <Route
           path="/"
@@ -109,6 +112,7 @@ function App() {
           element={<ResultsPage nickname={nickname} token={token} avatar={avatar} setAvatar={setAvatar} />}
         />
       </Routes>
+      </section>
     </main>
   );
 }

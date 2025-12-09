@@ -5,7 +5,7 @@ import socket from "../socket";
 function LandingPage({ nickname, setNickname, avatar, setAvatar }) {
   const navigate = useNavigate();
 
-  const avatarModules = import.meta.glob("../Avatars/*.png", {
+  const avatarModules = import.meta.glob("../Assets/Avatars/*.png", {
     eager: true,
   });
   const avatars = Object.values(avatarModules).map((mod) => mod.default);
@@ -35,11 +35,7 @@ useEffect(() => {
   }
 
   return (
-    <section className="screen landing-screen">
-      <header className="screen__header">
-        <h1 className="screen__title">Doodle Duel!</h1>
-      </header>
-
+    <section>
       <div className="screen__body">
         <div className="avatar-circle" aria-hidden="true">
           {avatar && (

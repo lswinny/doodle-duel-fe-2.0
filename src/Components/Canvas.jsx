@@ -192,12 +192,10 @@ function Canvas({ nickname, token }) {
   }
 
   return (
-    <div className="game-layout">
-      {/* Header always visible */}
-      <header className="screen__header">
-        <h1 className="screen__title" data-text="Doodle Duel!">
-          DOODLE DUEL!
-        </h1>
+  <section>
+    <div className="screen__header">
+      {/* Global header is already in App.jsx, so no title here */}
+      <div className="prompt-timer">
         {prompt && (
           <p id="prompt-text">
             Prompt: <span>{prompt}</span>
@@ -208,21 +206,18 @@ function Canvas({ nickname, token }) {
             ⏳ Time left: <span>{timer}</span> seconds
           </p>
         )}
-      </header>
+      </div>
+    </div>
 
-      {/* Conditional body below header */}
+    <div>
       {preCountdown !== null && preCountdown >= 0 ? (
-        <section className="screen">
-          <div className="screen__body canvas-layout">
-            <h1 className="canvas-countdown">{preCountdown}</h1>
-          </div>
-        </section>
+        <div className="canvas-layout">
+          <h1 className="canvas-countdown">{preCountdown}</h1>
+        </div>
       ) : !started ? (
-        <section className="screen">
-          <div className="screen__body canvas-layout">
-            <p className="canvas-waiting">Waiting for round to begin…</p>
-          </div>
-        </section>
+        <div className="canvas-layout">
+          <p className="canvas-waiting">Waiting for round to begin…</p>
+        </div>
       ) : (
         <div className="canvas-wrapper">
           <canvas
@@ -237,7 +232,9 @@ function Canvas({ nickname, token }) {
         </div>
       )}
     </div>
-  );
+  </section>
+);
+
 }
 
 export default Canvas;
