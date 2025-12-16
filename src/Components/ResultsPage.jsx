@@ -53,6 +53,17 @@ function ResultsPage() {
     return () => socket.off("round-results", handleResults);
   }, []);
 
+
+
+  useEffect(() => {
+    function handleNextRound({roomCode, roomData}) {
+      navigate(`/canvas/${roomCode}`, {state: {room: roomData} })
+    }
+
+    socket.on("next-round-started", handleNextRound);
+    return () => socket.off("next-round-started", handleNextRound);
+  }, [navigate, roomCode])
+
   if (!room) return <p>Loading results...</p>;
 
   return (
@@ -67,7 +78,9 @@ function ResultsPage() {
             const scoreObj = results.scores?.find(
               (s) => s.playerName === player.nickname
             );
-            const score = scoreObj ? `${Math.round(scoreObj.score)}%` : "Pending…"; // AI score here
+            const score = scoreObj
+              ? `${Math.round(scoreObj.score)}%`
+              : "Pending…"; // AI score here
             const url = scoreObj ? scoreObj.image : "Pending...";
 
             return (
@@ -83,7 +96,7 @@ function ResultsPage() {
                     }}
                   />
                 </div>
-                
+
                 <div className="results-image-placeholder">
                   <img
                     src={"data:image/png;base64," + url}
@@ -102,7 +115,7 @@ function ResultsPage() {
             );
           })}
         </div>
-        
+
         <div
           className="nav-buttons"
           style={{ marginTop: "2rem", textAlign: "center" }}
@@ -116,15 +129,17 @@ function ResultsPage() {
           >
             Quit
           </button>
-          <button
-            style={{ marginLeft: "1rem" }}
-            onClick={() => {
-              socket.emit("next-round", { roomCode });
-              navigate(`/canvas/${roomCode}`);
-            }}
-          >
-            Next Round
-          </button>
+
+          {socket.id === room.host ? (
+            <button
+              style={{ marginLeft: "1rem" }}
+              onClick={() => {
+                socket.emit("next-round", { roomCode });
+              }}
+            >
+              Next Round
+            </button>
+          ) : null}
         </div>
       </div>
     </section>
