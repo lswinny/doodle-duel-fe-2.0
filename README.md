@@ -9,12 +9,35 @@ This is the React frontend for Doodle Duel, a real‑time multiplayer drawing ga
 - Image upload to backend for AI scoring
 
 ## Game Flow
-1. Landing Page - player chooses a nickname and is given an avatar.
-2. Lobby – players join a room.
-3. Pre‑countdown – prompt is revealed during a 3-second countdown.
-4. Canvas – players draw for 30 seconds.
-5. Submission – drawings are uploaded to backend.
-6. Results – scores and images displayed together.
+1. Landing Page – player chooses a nickname and is given an avatar
+<p>
+<img src="./readme-screenshots/1.png" width="400">
+</p>
+
+2. Lobby – players create or join a room
+<p>
+<img src="./readme-screenshots/2.png" width="800">
+</p>
+<p>
+<img src="./readme-screenshots/3.png" width="800">
+</p>
+
+3. Pre‑countdown – prompt is revealed during a 3‑second countdown
+<p>
+<img src="./readme-screenshots/4.png" width="800">
+</p>
+
+4. Canvas – players draw for 30 seconds
+<p>
+<img src="./readme-screenshots/5.png" width="800">
+</p>
+
+5. Submission – drawings are uploaded to backend
+6. Results – scores and images displayed together
+<p>
+<img src="./readme-screenshots/6.png" width="400">
+</p>
+
 
 ## Tech Stack
 - React 19 – UI framework
@@ -24,6 +47,7 @@ This is the React frontend for Doodle Duel, a real‑time multiplayer drawing ga
 - ESLint 9 – linting and code quality
 
 ## Folder Structure
+```
 Frontend/
 ├── src/
 │   ├── Assets/
@@ -47,7 +71,7 @@ Frontend/
 ├── package.json
 ├── README.md
 └── vite.config.js
-
+```
 
 ## Installation
 
