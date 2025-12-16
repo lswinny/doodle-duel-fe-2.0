@@ -105,3 +105,7 @@ The frontend expects the backend services to be running:
 - FastAPI ML server exposed via ngrok (backend writes URL into .env)
 
 When you start the backend (see Backend README), the frontend connects automatically via Socket.IO.
+
+## About This Project
+
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Development provided by [Northcoders](https://northcoders.com/)
