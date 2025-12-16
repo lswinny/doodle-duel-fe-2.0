@@ -90,8 +90,8 @@ function ResultsPage() {
                     src={player.avatar || "/default-avatar.png"}
                     alt={`${player.nickname}'s avatar`}
                     style={{
-                      width: "50px",
-                      height: "50px",
+                      width: "80px",
+                      height: "80px",
                       borderRadius: "50%",
                     }}
                   />

@@ -8,6 +8,14 @@ This is the React frontend for Doodle Duel, a real‑time multiplayer drawing ga
 - Lobby and room management with React Router
 - Image upload to backend for AI scoring
 
+## Game Flow
+1. Landing Page - player chooses a nickname and is given an avatar.
+2. Lobby – players join a room.
+3. Pre‑countdown – prompt is revealed during a 3-second countdown.
+4. Canvas – players draw for 30 seconds.
+5. Submission – drawings are uploaded to backend.
+6. Results – scores and images displayed together.
+
 ## Tech Stack
 - React 19 – UI framework
 - React Router DOM 7 – client‑side routing
@@ -73,11 +81,3 @@ The frontend expects the backend services to be running:
 - FastAPI ML server exposed via ngrok (backend writes URL into .env)
 
 When you start the backend (see Backend README), the frontend connects automatically via Socket.IO.
-
-## Game Flow
-1. Landing Page - player chooses a nickname and is given an avatar.
-1. Lobby – players join a room.
-2. Pre‑countdown – prompt is revealed during a 3-second countdown.
-3. Canvas – players draw for 30 seconds.
-4. Submission – drawings are uploaded to backend.
-5. Results – scores and images displayed together.
